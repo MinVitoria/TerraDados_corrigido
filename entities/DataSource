@@ -1,0 +1,118 @@
+{
+  "name": "DataSource",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nome da fonte de dados"
+    },
+    "institution": {
+      "type": "string",
+      "description": "Institui\u00e7\u00e3o governamental respons\u00e1vel"
+    },
+    "institution_acronym": {
+      "type": "string",
+      "description": "Sigla da institui\u00e7\u00e3o"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o acad\u00eamica da fonte"
+    },
+    "historical_context": {
+      "type": "string",
+      "description": "Contexto hist\u00f3rico e relev\u00e2ncia da base de dados"
+    },
+    "theme": {
+      "type": "string",
+      "enum": [
+        "Clima e Atmosfera",
+        "Biodiversidade",
+        "Recursos H\u00eddricos",
+        "Uso do Solo",
+        "Energia e Emiss\u00f5es",
+        "Res\u00edduos e Saneamento",
+        "Oceanos e Zonas Costeiras",
+        "Legisla\u00e7\u00e3o Ambiental"
+      ],
+      "description": "Tema ambiental principal"
+    },
+    "data_types": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Planilha",
+          "API",
+          "Vetorial (SHP/GeoJSON)",
+          "Raster (TIFF)",
+          "Relat\u00f3rio (PDF)",
+          "Banco de Dados",
+          "S\u00e9ries Temporais",
+          "Microdados"
+        ]
+      },
+      "description": "Tipos de dados dispon\u00edveis"
+    },
+    "url": {
+      "type": "string",
+      "description": "URL oficial da fonte governamental"
+    },
+    "update_frequency": {
+      "type": "string",
+      "enum": [
+        "Di\u00e1ria",
+        "Semanal",
+        "Mensal",
+        "Trimestral",
+        "Anual",
+        "Sob demanda",
+        "Tempo real"
+      ],
+      "description": "Frequ\u00eancia de atualiza\u00e7\u00e3o dos dados"
+    },
+    "reliability_level": {
+      "type": "string",
+      "enum": [
+        "Refer\u00eancia Internacional",
+        "Oficial Federal",
+        "Oficial Estadual",
+        "Dados Consolidados",
+        "Dados Preliminares"
+      ],
+      "description": "N\u00edvel de confiabilidade da fonte"
+    },
+    "coverage": {
+      "type": "string",
+      "description": "Abrang\u00eancia geogr\u00e1fica dos dados"
+    },
+    "available_since": {
+      "type": "string",
+      "description": "Desde quando os dados est\u00e3o dispon\u00edveis"
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Palavras-chave para busca"
+    },
+    "citation_name": {
+      "type": "string",
+      "description": "Nome para cita\u00e7\u00e3o acad\u00eamica"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Fonte em destaque"
+    }
+  },
+  "required": [
+    "name",
+    "institution",
+    "institution_acronym",
+    "description",
+    "theme",
+    "url",
+    "reliability_level"
+  ]
+}
