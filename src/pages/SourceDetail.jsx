@@ -1,29 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { base44 } from "@/api/base44Client";
 import { ArrowLeft, ExternalLink, Clock, Shield, MapPin, Calendar, Database, Loader2 } from "lucide-react";
 import CitationGenerator from "../components/detail/CitationGenerator";
 import { motion } from "framer-motion";
+import { useDataSources, filterSources } from "@/hooks/useDataSources";
 
 export default function SourceDetail() {
   const { id } = useParams();
-  const [source, setSource] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [related, setRelated] = useState([]);
+  const { sources, loading } = useDataSources();
 
+  const source = sources.find(s => s.id === id);
+  const related = source 
+    ? filterSources(sources, { theme: source.theme })
+        .filter(s => s.id !== id)
+        .slice(0, 3)
+    : [];
+
+  // Scroll to top quando mudar de fonte
   useEffect(() => {
     window.scrollTo(0, 0);
-    setLoading(true);
-    base44.entities.DataSource.filter({ id })
-      .then((res) => {
-        if (res.length > 0) {
-          setSource(res[0]);
-          return base44.entities.DataSource.filter({ theme: res[0].theme });
-        }
-        return [];
-      })
-      .then((all) => setRelated(all.filter((s) => s.id !== id).slice(0, 3)))
-      .finally(() => setLoading(false));
   }, [id]);
 
   if (loading) {
@@ -37,8 +32,13 @@ export default function SourceDetail() {
   if (!source) {
     return (
       <div className="pt-14 min-h-screen flex flex-col items-center justify-center gap-4 px-6">
-        <h1 className="font-display text-2xl font-extrabold text-foreground">Fonte não encontrada</h1>
-        <Link to="/repositorios" className="text-sm text-primary font-heading font-bold uppercase tracking-widest">
+        <h1 className="font-display text-2xl font-extrabold text-foreground">
+          Fonte não encontrada
+        </h1>
+        <Link 
+          to="/repositorios" 
+          className="text-sm text-primary font-heading font-bold uppercase tracking-widest hover:underline"
+        >
           ← Voltar ao diretório
         </Link>
       </div>
@@ -135,7 +135,9 @@ export default function SourceDetail() {
                       Frequência
                     </span>
                   </div>
-                  <p className="font-body text-sm text-foreground">{source.update_frequency || "Não informada"}</p>
+                  <p className="font-body text-sm text-foreground">
+                    {source.update_frequency || "Não informada"}
+                  </p>
                 </div>
 
                 <div className="bg-background p-5">
@@ -155,7 +157,9 @@ export default function SourceDetail() {
                       Cobertura
                     </span>
                   </div>
-                  <p className="font-body text-sm text-foreground">{source.coverage || "Nacional"}</p>
+                  <p className="font-body text-sm text-foreground">
+                    {source.coverage || "Nacional"}
+                  </p>
                 </div>
 
                 <div className="bg-background p-5">
@@ -165,7 +169,9 @@ export default function SourceDetail() {
                       Disponível desde
                     </span>
                   </div>
-                  <p className="font-body text-sm text-foreground">{source.available_since || "Não informado"}</p>
+                  <p className="font-body text-sm text-foreground">
+                    {source.available_since || "Não informado"}
+                  </p>
                 </div>
               </div>
             </motion.section>
@@ -182,7 +188,10 @@ export default function SourceDetail() {
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {source.data_types.map((dt) => (
-                    <span key={dt} className="flex items-center gap-2 px-4 py-2.5 bg-secondary text-secondary-foreground font-heading text-xs font-semibold">
+                    <span 
+                      key={dt} 
+                      className="flex items-center gap-2 px-4 py-2.5 bg-secondary text-secondary-foreground font-heading text-xs font-semibold"
+                    >
                       <Database className="w-3.5 h-3.5" />
                       {dt}
                     </span>
@@ -227,9 +236,17 @@ export default function SourceDetail() {
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-border border border-border">
                   {related.map((r) => (
-                    <Link key={r.id} to={`/fonte/${r.id}`} className="bg-background p-5 hover:bg-secondary/50 transition-colors">
-                      <span className="text-xs font-heading font-bold text-primary mb-2 block">{r.institution_acronym}</span>
-                      <p className="font-heading text-sm font-bold text-foreground leading-tight">{r.name}</p>
+                    <Link 
+                      key={r.id} 
+                      to={`/fonte/${r.id}`} 
+                      className="bg-background p-5 hover:bg-secondary/50 transition-colors"
+                    >
+                      <span className="text-xs font-heading font-bold text-primary mb-2 block">
+                        {r.institution_acronym}
+                      </span>
+                      <p className="font-heading text-sm font-bold text-foreground leading-tight">
+                        {r.name}
+                      </p>
                     </Link>
                   ))}
                 </div>
