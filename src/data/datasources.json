@@ -1,0 +1,40 @@
+{
+  "datasources": [
+    {
+      "id": "1",
+      "name": "PRODES - Monitoramento do Desmatamento",
+      "institution": "Instituto Nacional de Pesquisas Espaciais",
+      "institution_acronym": "INPE",
+      "description": "Monitoramento anual do desmatamento na Amazônia Legal por satélite.",
+      "historical_context": "Iniciado em 1988, é uma das séries históricas mais longas de monitoramento florestal do mundo.",
+      "theme": "Uso do Solo",
+      "data_types": ["Raster (TIFF)", "Vetorial (SHP/GeoJSON)"],
+      "url": "https://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation",
+      "update_frequency": "Anual",
+      "reliability_level": "Referência Internacional",
+      "coverage": "Amazônia Legal",
+      "available_since": "1988",
+      "keywords": ["desmatamento", "amazonia", "prodes", "inpe"],
+      "citation_name": "INPE. PRODES. Disponível em: <https://terrabrasilis.dpi.inpe.br>.",
+      "featured": true
+    },
+    {
+      "id": "2",
+      "name": "BDMEP - Banco de Dados Meteorológicos",
+      "institution": "Instituto Nacional de Meteorologia",
+      "institution_acronym": "INMET",
+      "description": "Dados meteorológicos históricos de estações automáticas e convencionais.",
+      "theme": "Clima e Atmosfera",
+      "data_types": ["Séries Temporais", "Planilha"],
+      "url": "https://bdmep.inmet.gov.br/",
+      "update_frequency": "Diária",
+      "reliability_level": "Oficial Federal",
+      "coverage": "Nacional",
+      "available_since": "1961",
+      "keywords": ["clima", "meteorologia", "precipitação", "temperatura"],
+      "citation_name": "INMET. BDMEP.",
+      "featured": true
+    }
+    // Adicione mais fontes aqui...
+  ]
+}
