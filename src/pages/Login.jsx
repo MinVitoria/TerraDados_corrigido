@@ -1,21 +1,48 @@
 import React from "react";
-import HeroSection from "../components/home/HeroSection";
-import StatsBar from "../components/home/StatsBar";
-import ThemeGrid from "../components/home/ThemeGrid";
-import FeaturedSources from "../components/home/FeaturedSources";
-import MethodologySection from "../components/home/MethodologySection";
+import { Link, useNavigate } from "react-router-dom";
+import { LogIn } from "lucide-react";
+import AuthLayout from "@/components/AuthLayout";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/lib/AuthContext";
 
-const HERO_IMAGE = "https://media.base44.com/images/public/6a2dc1d745b60383a960bb0c/0aca65864_generated_c05cc594.png";
-const SOIL_IMAGE = "https://media.base44.com/images/public/6a2dc1d745b60383a960bb0c/7d8dcbadd_generated_13fcc966.png";
+export default function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-export default function Home() {
+  const handleLogin = () => {
+    const mockUser = {
+      id: "1",
+      email: "pesquisador@exemplo.com",
+      name: "Pesquisador Teste",
+      role: "user"
+    };
+    login(mockUser);
+    navigate("/");
+  };
+
   return (
-    <div>
-      <HeroSection heroImage={HERO_IMAGE} />
-      <StatsBar />
-      <ThemeGrid />
-      <FeaturedSources />
-      <MethodologySection soilImage={SOIL_IMAGE} />
-    </div>
+    <AuthLayout
+      icon={LogIn}
+      title="Entrar no TerraDados"
+      subtitle="Acesse sua conta para continuar"
+    >
+      <Button 
+        onClick={handleLogin}
+        className="w-full h-12 font-medium text-base"
+      >
+        Entrar com Conta Demo
+      </Button>
+
+      <p className="text-center text-sm text-muted-foreground mt-6">
+        Este é um ambiente de demonstração.<br />
+        Não é necessário cadastro real.
+      </p>
+
+      <div className="mt-8 text-center">
+        <Link to="/" className="text-primary hover:underline text-sm">
+          ← Voltar para a página inicial
+        </Link>
+      </div>
+    </AuthLayout>
   );
 }
