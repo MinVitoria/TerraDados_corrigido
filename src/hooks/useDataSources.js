@@ -6,11 +6,10 @@ export const useDataSources = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simula um pequeno delay para manter a experiência visual
     const timer = setTimeout(() => {
-      setSources(data.datasources);
+      setSources(data.datasources || []);
       setLoading(false);
-    }, 300);
+    }, 300); // pequeno delay para melhor UX
 
     return () => clearTimeout(timer);
   }, []);
@@ -18,11 +17,11 @@ export const useDataSources = () => {
   return { sources, loading };
 };
 
-// Funções auxiliares de filtro (substituem o SDK)
+// Funções auxiliares
 export const filterSources = (sources, filters = {}) => {
   return sources.filter(source => {
     if (filters.id && source.id !== filters.id) return false;
-    if (filters.featured && !source.featured) return false;
+    if (filters.featured !== undefined && source.featured !== filters.featured) return false;
     if (filters.theme && source.theme !== filters.theme) return false;
     return true;
   });
@@ -36,6 +35,7 @@ export const searchSources = (sources, query) => {
     s.description?.toLowerCase().includes(q) ||
     s.institution?.toLowerCase().includes(q) ||
     s.institution_acronym?.toLowerCase().includes(q) ||
-    s.keywords?.some(k => k.toLowerCase().includes(q))
+    s.keywords?.some(k => k.toLowerCase().includes(q)) ||
+    s.theme?.toLowerCase().includes(q)
   );
 };
