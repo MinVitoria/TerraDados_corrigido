@@ -1,23 +1,31 @@
 import { useState, useEffect } from 'react';
-import data from '../data/datasources.json';
+import jsonData from '../data/datasources.json';
 
 export const useDataSources = () => {
   const [sources, setSources] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setSources(data.datasources || []);
+    try {
+      if (jsonData && jsonData.datasources) {
+        setSources(jsonData.datasources);
+      } else {
+        console.error("JSON não possui 'datasources'");
+        setSources([]);
+      }
+    } catch (err) {
+      console.error("Erro ao carregar datasources.json:", err);
+      setError(err.message);
+      setSources([]);
+    } finally {
       setLoading(false);
-    }, 300); // pequeno delay para melhor UX
-
-    return () => clearTimeout(timer);
+    }
   }, []);
 
-  return { sources, loading };
+  return { sources, loading, error };
 };
 
-// Funções auxiliares
 export const filterSources = (sources, filters = {}) => {
   return sources.filter(source => {
     if (filters.id && source.id !== filters.id) return false;
@@ -28,14 +36,14 @@ export const filterSources = (sources, filters = {}) => {
 };
 
 export const searchSources = (sources, query) => {
-  if (!query) return sources;
-  const q = query.toLowerCase();
+  if (!query?.trim()) return sources;
+  const q = query.toLowerCase().trim();
   return sources.filter(s => 
     s.name?.toLowerCase().includes(q) ||
     s.description?.toLowerCase().includes(q) ||
     s.institution?.toLowerCase().includes(q) ||
     s.institution_acronym?.toLowerCase().includes(q) ||
-    s.keywords?.some(k => k.toLowerCase().includes(q)) ||
-    s.theme?.toLowerCase().includes(q)
+    s.theme?.toLowerCase().includes(q) ||
+    s.keywords?.some(k => k.toLowerCase().includes(q))
   );
 };
