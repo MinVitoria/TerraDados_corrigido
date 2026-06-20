@@ -1,40 +1,429 @@
 {
   "datasources": [
-    {
-      "id": "1",
-      "name": "PRODES - Monitoramento do Desmatamento",
-      "institution": "Instituto Nacional de Pesquisas Espaciais",
-      "institution_acronym": "INPE",
-      "description": "Monitoramento anual do desmatamento na Amazônia Legal por satélite.",
-      "historical_context": "Iniciado em 1988, é uma das séries históricas mais longas de monitoramento florestal do mundo.",
-      "theme": "Uso do Solo",
-      "data_types": ["Raster (TIFF)", "Vetorial (SHP/GeoJSON)"],
-      "url": "https://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation",
-      "update_frequency": "Anual",
-      "reliability_level": "Referência Internacional",
-      "coverage": "Amazônia Legal",
-      "available_since": "1988",
-      "keywords": ["desmatamento", "amazonia", "prodes", "inpe"],
-      "citation_name": "INPE. PRODES. Disponível em: <https://terrabrasilis.dpi.inpe.br>.",
-      "featured": true
-    },
-    {
-      "id": "2",
-      "name": "BDMEP - Banco de Dados Meteorológicos",
-      "institution": "Instituto Nacional de Meteorologia",
-      "institution_acronym": "INMET",
-      "description": "Dados meteorológicos históricos de estações automáticas e convencionais.",
-      "theme": "Clima e Atmosfera",
-      "data_types": ["Séries Temporais", "Planilha"],
-      "url": "https://bdmep.inmet.gov.br/",
-      "update_frequency": "Diária",
-      "reliability_level": "Oficial Federal",
-      "coverage": "Nacional",
-      "available_since": "1961",
-      "keywords": ["clima", "meteorologia", "precipitação", "temperatura"],
-      "citation_name": "INMET. BDMEP.",
-      "featured": true
-    }
-    // Adicione mais fontes aqui...
-  ]
+   
+  {
+    "id": "1",
+    "name": "PRODES — Monitoramento da Floresta Amazônica Brasileira por Satélite",
+    "institution": "Instituto Nacional de Pesquisas Espaciais",
+    "institution_acronym": "INPE",
+    "description": "Sistema de monitoramento por satélite do desmatamento por corte raso na Amazônia Legal. Utiliza imagens do satélite Landsat com resolução de 30m para calcular a taxa anual de desmatamento, sendo a referência oficial do governo brasileiro para políticas de combate ao desmatamento.",
+    "historical_context": "Criado em 1988, o PRODES é o mais antigo sistema de monitoramento contínuo de florestas tropicais do mundo. Seus dados subsidiaram a criação do PPCDAm e do Fundo Amazônia, além de serem referência internacional em transparência governamental.",
+    "theme": "Uso do Solo",
+    "data_types": [
+      "Raster (TIFF)",
+      "Vetorial (SHP/GeoJSON)",
+      "Banco de Dados"
+    ],
+    "url": "http://www.obt.inpe.br/OBT/assuntos/programas/amazonia/prodes",
+    "update_frequency": "Anual",
+    "reliability_level": "Referência Internacional",
+    "coverage": "Amazônia Legal (9 estados brasileiros)",
+    "available_since": "1988",
+    "keywords": [
+      "desmatamento",
+      "amazônia",
+      "satélite",
+      "floresta tropical",
+      "corte raso",
+      "landsat"
+    ],
+    "citation_name": "INPE. Projeto PRODES — Monitoramento da Floresta Amazônica Brasileira por Satélite.",
+    "featured": true
+  },
+  {
+    "id": "2",
+    "name": "DETER — Sistema de Detecção em Tempo Real",
+    "institution": "Instituto Nacional de Pesquisas Espaciais",
+    "institution_acronym": "INPE",
+    "description": "Sistema de alerta de desmatamento em tempo quase-real que utiliza imagens dos satélites CBERS, Landsat e Sentinel para detectar alterações na cobertura florestal da Amazônia e Cerrado com frequência diária.",
+    "historical_context": "Implantado em 2004 como complemento ao PRODES, o DETER foi criado para subsidiar ações de fiscalização do IBAMA. Em 2015, foi expandido para o bioma Cerrado (DETER Cerrado).",
+    "theme": "Uso do Solo",
+    "data_types": [
+      "Vetorial (SHP/GeoJSON)",
+      "Séries Temporais",
+      "API"
+    ],
+    "url": "http://www.obt.inpe.br/OBT/assuntos/programas/amazonia/deter",
+    "update_frequency": "Diária",
+    "reliability_level": "Oficial Federal",
+    "coverage": "Amazônia Legal e Cerrado",
+    "available_since": "2004",
+    "keywords": [
+      "alerta",
+      "desmatamento",
+      "tempo real",
+      "fiscalização",
+      "cerrado"
+    ],
+    "citation_name": "INPE. Sistema DETER — Detecção de Desmatamento em Tempo Real.",
+    "featured": true
+  },
+  {
+    "id": "3",
+    "name": "MapBiomas — Mapeamento Anual da Cobertura e Uso do Solo",
+    "institution": "Rede colaborativa com participação do INPE e universidades",
+    "institution_acronym": "MapBiomas",
+    "description": "Projeto que produz mapeamento anual da cobertura e uso do solo do Brasil com resolução de 30m, utilizando processamento em nuvem de imagens de satélite. Inclui dados de transição de uso do solo e alertas de desmatamento.",
+    "historical_context": "Iniciado em 2015 como uma iniciativa multi-institucional, o MapBiomas se tornou referência para estudos de dinâmica de uso do solo no Brasil. Seus dados são amplamente utilizados em publicações na Nature, Science e PNAS.",
+    "theme": "Uso do Solo",
+    "data_types": [
+      "Raster (TIFF)",
+      "Vetorial (SHP/GeoJSON)",
+      "API",
+      "Séries Temporais"
+    ],
+    "url": "https://mapbiomas.org/",
+    "update_frequency": "Anual",
+    "reliability_level": "Referência Internacional",
+    "coverage": "Nacional (todos os biomas)",
+    "available_since": "1985",
+    "keywords": [
+      "uso do solo",
+      "cobertura vegetal",
+      "transição",
+      "sensoriamento remoto",
+      "biomas"
+    ],
+    "citation_name": "MapBiomas. Projeto de Mapeamento Anual da Cobertura e Uso do Solo no Brasil.",
+    "featured": true
+  },
+  {
+    "id": "4",
+    "name": "BDMEP — Banco de Dados Meteorológicos para Ensino e Pesquisa",
+    "institution": "Instituto Nacional de Meteorologia",
+    "institution_acronym": "INMET",
+    "description": "Banco de dados com informações meteorológicas históricas de estações convencionais e automáticas de todo o Brasil. Inclui dados de temperatura, precipitação, umidade, vento e pressão atmosférica.",
+    "historical_context": "O BDMEP é uma das principais fontes de dados climáticos históricos do Brasil, fundamental para estudos de mudanças climáticas e modelagem meteorológica.",
+    "theme": "Clima e Atmosfera",
+    "data_types": [
+      "Planilha",
+      "Séries Temporais",
+      "API",
+      "Banco de Dados"
+    ],
+    "url": "https://bdmep.inmet.gov.br/",
+    "update_frequency": "Diária",
+    "reliability_level": "Oficial Federal",
+    "coverage": "Nacional (todas as regiões)",
+    "available_since": "1909",
+    "keywords": [
+      "clima",
+      "meteorologia",
+      "chuva",
+      "temperatura",
+      "mudanças climáticas"
+    ],
+    "citation_name": "INMET. BDMEP — Banco de Dados Meteorológicos para Ensino e Pesquisa.",
+    "featured": false
+  },
+  {
+    "id": "5",
+    "name": "SNIRH — Sistema Nacional de Informações sobre Recursos Hídricos",
+    "institution": "Agência Nacional de Águas e Saneamento Básico",
+    "institution_acronym": "ANA",
+    "description": "Sistema que reúne informações sobre disponibilidade e qualidade da água no Brasil. Inclui dados de estações pluviométricas, fluviométricas e qualidade da água (HidroWeb).",
+    "historical_context": "O SNIRH é uma das principais ferramentas da Política Nacional de Recursos Hídricos (Lei 9.433/1997). Seus dados são essenciais para gestão de bacias hidrográficas e estudos de recursos hídricos.",
+    "theme": "Recursos Hídricos",
+    "data_types": [
+      "Vetorial (SHP/GeoJSON)",
+      "Séries Temporais",
+      "Planilha",
+      "Banco de Dados"
+    ],
+    "url": "https://www.snirh.gov.br/",
+    "update_frequency": "Diária",
+    "reliability_level": "Oficial Federal",
+    "coverage": "Nacional (todas as bacias)",
+    "available_since": "1997",
+    "keywords": [
+      "água",
+      "rios",
+      "bacias hidrográficas",
+      "hidrografia",
+      "qualidade da água"
+    ],
+    "citation_name": "ANA. SNIRH — Sistema Nacional de Informações sobre Recursos Hídricos.",
+    "featured": false
+  },
+  {
+    "id": "6",
+    "name": "CENSIPAM — Painel do Fogo",
+    "institution": "Centro Gestor e Operacional do Sistema de Proteção da Amazônia",
+    "institution_acronym": "CENSIPAM",
+    "description": "Painel de monitoramento de focos de calor na Amazônia utilizando imagens de satélite. Focado em subsidiar operações de combate a incêndios florestais.",
+    "historical_context": "Criado como ferramenta operacional para as Forças Armadas e órgãos ambientais durante a Operação Verde Brasil.",
+    "theme": "Monitoramento de Queimadas",
+    "data_types": [
+      "API",
+      "Dashboard",
+      "Vetorial (SHP/GeoJSON)"
+    ],
+    "url": "https://paineldofogo.sipam.gov.br/",
+    "update_frequency": "Em tempo real",
+    "reliability_level": "Oficial Federal",
+    "coverage": "Amazônia Legal",
+    "available_since": "2020",
+    "keywords": [
+      "fogo",
+      "incêndios",
+      "queimadas",
+      "amazônia",
+      "focos de calor"
+    ],
+    "citation_name": "CENSIPAM. Painel do Fogo.",
+    "featured": false
+  },
+  {
+    "id": "7",
+    "name": "SIF — Sistema de Informações Florestais",
+    "institution": "Serviço Florestal Brasileiro",
+    "institution_acronym": "SFB",
+    "description": "Reúne dados sobre concessões florestais, manejo sustentável, inventário florestal nacional e mercado de produtos de origem florestal.",
+    "historical_context": "Criado para promover a transparência na gestão de florestas públicas e apoiar o manejo sustentável da flora nativa.",
+    "theme": "Gestão Florestal",
+    "data_types": [
+      "Banco de Dados",
+      "Planilha",
+      "Relatórios"
+    ],
+    "url": "https://www.florestal.gov.br/sif",
+    "update_frequency": "Mensal",
+    "reliability_level": "Oficial Federal",
+    "coverage": "Nacional",
+    "available_since": "2006",
+    "keywords": [
+      "manejo florestal",
+      "concessão",
+      "madeira",
+      "produtos florestais",
+      "sustentabilidade"
+    ],
+    "citation_name": "SFB. Sistema de Informações Florestais.",
+    "featured": false
+  },
+  {
+    "id": "8",
+    "name": "Plataforma de Biodiversidade - SiBBr",
+    "institution": "Ministério da Ciência, Tecnologia e Inovações",
+    "institution_acronym": "MCTI",
+    "description": "Sistema de Informação sobre a Biodiversidade Brasileira que integra dados sobre espécies nativas, coleções biológicas e distribuição geográfica de fauna e flora.",
+    "historical_context": "É o nó brasileiro da iniciativa global GBIF (Global Biodiversity Information Facility).",
+    "theme": "Biodiversidade",
+    "data_types": [
+      "Banco de Dados",
+      "API",
+      "Vetorial (SHP/GeoJSON)"
+    ],
+    "url": "https://sibbr.gov.br/",
+    "update_frequency": "Contínua",
+    "reliability_level": "Referência Internacional",
+    "coverage": "Nacional",
+    "available_since": "2014",
+    "keywords": [
+      "fauna",
+      "flora",
+      "espécies",
+      "biologia",
+      "distribuição"
+    ],
+    "citation_name": "MCTI. SiBBr — Sistema de Informação sobre a Biodiversidade Brasileira.",
+    "featured": false
+  },
+  {
+    "id": "9",
+    "name": "Portal de Dados Abertos do IBAMA",
+    "institution": "Instituto Brasileiro do Meio Ambiente e dos Recursos Naturais Renováveis",
+    "institution_acronym": "IBAMA",
+    "description": "Disponibiliza informações oficiais sobre autuações ambientais (multas), embargos, licenciamento federal, transporte de produtos florestais e apreensões.",
+    "historical_context": "Parte da Política de Dados Abertos do Executivo Federal, visa aumentar a transparência das ações de comando e controle ambiental.",
+    "theme": "Fiscalização e Controle",
+    "data_types": [
+      "Planilha",
+      "CSV",
+      "API"
+    ],
+    "url": "https://dadosabertos.ibama.gov.br/",
+    "update_frequency": "Semanal",
+    "reliability_level": "Oficial Federal",
+    "coverage": "Nacional",
+    "available_since": "2016",
+    "keywords": [
+      "multas",
+      "embargos",
+      "fiscalização",
+      "licenciamento",
+      "infração ambiental"
+    ],
+    "citation_name": "IBAMA. Portal de Dados Abertos.",
+    "featured": true
+  },
+  {
+    "id": "10",
+    "name": "TerraBrasilis",
+    "institution": "Instituto Nacional de Pesquisas Espaciais",
+    "institution_acronym": "INPE",
+    "description": "Plataforma web para acesso, consulta e visualização de dados geográficos do INPE. É a interface oficial para visualização dos mapas do PRODES e DETER.",
+    "historical_context": "Criado para facilitar o acesso público aos dados geoespaciais gerados pelo INPE, substituindo sistemas antigos de distribuição de dados.",
+    "theme": "Uso do Solo",
+    "data_types": [
+      "WebGIS",
+      "WMS/WFS",
+      "Vetorial (SHP/GeoJSON)"
+    ],
+    "url": "http://terrabrasilis.dpi.inpe.br/",
+    "update_frequency": "Conforme dados de origem",
+    "reliability_level": "Oficial Federal",
+    "coverage": "Amazônia e Cerrado",
+    "available_since": "2018",
+    "keywords": [
+      "mapas",
+      "visualização",
+      "webgis",
+      "dados espaciais",
+      "inpe"
+    ],
+    "citation_name": "INPE. Plataforma TerraBrasilis.",
+    "featured": false
+  },
+  {
+    "id": "11",
+    "name": "SINIR — Sistema Nacional de Informações sobre a Gestão dos Resíduos Sólidos",
+    "institution": "Ministério do Meio Ambiente e Mudança do Clima",
+    "institution_acronym": "MMA",
+    "description": "Plataforma oficial que coleta, consolida e disponibiliza dados sobre a geração, coleta, reciclagem e destinação final de resíduos sólidos no Brasil.",
+    "historical_context": "Instituído pela Política Nacional de Resíduos Sólidos (PNRS - Lei nº 12.305/2010), é o principal instrumento para acompanhamento de metas ambientais.",
+    "theme": "Resíduos Sólidos",
+    "data_types": [
+      "Dashboard",
+      "Planilha",
+      "Relatórios"
+    ],
+    "url": "https://sinir.gov.br/",
+    "update_frequency": "Anual",
+    "reliability_level": "Oficial Federal",
+    "coverage": "Nacional (estaduais e municipais)",
+    "available_since": "2019",
+    "keywords": [
+      "lixo",
+      "reciclagem",
+      "aterros",
+      "resíduos",
+      "saneamento"
+    ],
+    "citation_name": "MMA. SINIR — Sistema Nacional de Informações sobre a Gestão dos Resíduos Sólidos.",
+    "featured": false
+  },
+  {
+    "id": "12",
+    "name": "SIRENE — Sistema de Registro Nacional de Emissões",
+    "institution": "Ministério da Ciência, Tecnologia e Inovações",
+    "institution_acronym": "MCTI",
+    "description": "Ferramenta para transparência e acompanhamento das emissões brasileiras de gases de efeito estufa. Apresenta o inventário nacional por setor (energia, agropecuária, LULUCF e resíduos).",
+    "historical_context": "Criado para subsidiar as comunicações nacionais do Brasil perante a Convenção-Quadro das Nações Unidas sobre Mudança do Clima (UNFCCC).",
+    "theme": "Mudanças Climáticas",
+    "data_types": [
+      "Séries Temporais",
+      "Relatórios",
+      "Planilha"
+    ],
+    "url": "https://sirene.mcti.gov.br/",
+    "update_frequency": "Anual",
+    "reliability_level": "Referência Internacional",
+    "coverage": "Nacional",
+    "available_since": "2016",
+    "keywords": [
+      "gases de efeito estufa",
+      "clima",
+      "emissões",
+      "carbono",
+      "inventário"
+    ],
+    "citation_name": "MCTI. SIRENE — Sistema de Registro Nacional de Emissões.",
+    "featured": false
+  },
+  {
+    "id": "13",
+    "name": "CEMADEN — Monitoramento de Desastres Naturais",
+    "institution": "Centro Nacional de Monitoramento e Alertas de Desastres Naturais",
+    "institution_acronym": "CEMADEN",
+    "description": "Sistema de alerta para desastres hidrológicos, geológicos e agrometeorológicos. Disponibiliza dados sobre risco de enchentes, deslizamentos e impactos de secas.",
+    "historical_context": "Criado após o megadesastre na Região Serrana do Rio de Janeiro (2011), visa fornecer alertas antecipados para proteção de vidas.",
+    "theme": "Prevenção de Desastres",
+    "data_types": [
+      "API",
+      "Séries Temporais",
+      "Dashboard",
+      "WebGIS"
+    ],
+    "url": "http://www.cemaden.gov.br/",
+    "update_frequency": "Em tempo real",
+    "reliability_level": "Oficial Federal",
+    "coverage": "Municípios vulneráveis do Brasil",
+    "available_since": "2011",
+    "keywords": [
+      "desastres",
+      "enchentes",
+      "deslizamentos",
+      "risco",
+      "alertas"
+    ],
+    "citation_name": "CEMADEN. Sistema de Monitoramento e Alertas de Desastres Naturais.",
+    "featured": false
+  },
+  {
+    "id": "14",
+    "name": "BDQueimadas — Programa Queimadas",
+    "institution": "Instituto Nacional de Pesquisas Espaciais",
+    "institution_acronym": "INPE",
+    "description": "Sistema de monitoramento de focos de calor (incêndios florestais e queimadas) com atualização em tempo real via satélites. Inclui cálculo de risco de fogo e histórico meteorológico.",
+    "historical_context": "Pioneiro no monitoramento de queimadas na América do Sul, é referência para o IBAMA, Corpo de Bombeiros e agências ambientais estaduais.",
+    "theme": "Monitoramento de Queimadas",
+    "data_types": [
+      "Vetorial (SHP/GeoJSON)",
+      "Séries Temporais",
+      "CSV"
+    ],
+    "url": "http://terrabrasilis.dpi.inpe.br/queimadas/bdqueimadas/",
+    "update_frequency": "A cada 3 horas",
+    "reliability_level": "Referência Internacional",
+    "coverage": "América do Sul",
+    "available_since": "1998",
+    "keywords": [
+      "queimadas",
+      "focos de calor",
+      "incêndios",
+      "fogo",
+      "risco ambiental"
+    ],
+    "citation_name": "INPE. Programa BDQueimadas.",
+    "featured": true
+  },
+  {
+    "id": "15",
+    "name": "CAR — Cadastro Ambiental Rural",
+    "institution": "Serviço Florestal Brasileiro",
+    "institution_acronym": "SFB",
+    "description": "Registro eletrônico obrigatório para imóveis rurais no Brasil, focando na regularização ambiental (APPs, Reserva Legal e áreas consolidadas).",
+    "historical_context": "Criado pelo Novo Código Florestal (Lei nº 12.651/2012), revolucionou a gestão territorial agrícola, mapeando milhões de propriedades rurais georreferenciadas.",
+    "theme": "Uso do Solo",
+    "data_types": [
+      "Vetorial (SHP/GeoJSON)",
+      "Banco de Dados"
+    ],
+    "url": "https://car.gov.br/",
+    "update_frequency": "Contínua",
+    "reliability_level": "Oficial Federal",
+    "coverage": "Nacional (imóveis rurais)",
+    "available_since": "2012",
+    "keywords": [
+      "reserva legal",
+      "APP",
+      "propriedades rurais",
+      "código florestal",
+      "georreferenciamento"
+    ],
+    "citation_name": "SFB. Sistema Nacional de Cadastro Ambiental Rural - SICAR.",
+    "featured": true
+  }
+]
 }
